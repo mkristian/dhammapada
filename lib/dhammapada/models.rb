@@ -1,4 +1,3 @@
-#!/bin/ruby
 # -*- coding: utf-8 -*-
 
 require 'virtus'
@@ -31,13 +30,13 @@ class Book
 
   def verse( number )
     ch = chapter_of_verse_number( number )
-    Dhammapada.new( :translator => translator,
-                    :chapters => [ ch.clone_for( verse_map[ number ] ) ] )
+    Book.new( :translator => translator,
+              :chapters => [ ch.clone_for( verse_map[ number ] ) ] )
   end
 
   def chapter( number )
-    Dhammapada.new( :translator => translator,
-                    :chapters => [ chapter_map[ number ] ] )
+    Book.new( :translator => translator,
+              :chapters => [ chapter_map[ number ] ] )
   end
 
   def number_of_verses

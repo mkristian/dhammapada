@@ -11,7 +11,6 @@ module Dhammapada
     define do
       on ":name" do |name|
         on get, "chapter/:number" do |number|
-          raise "here"
           write dhammapada( name ).chapter( number.to_i )
         end
 
@@ -24,7 +23,7 @@ module Dhammapada
         end
       end
 
-      on default do
+      on get do
         write dhammapada_all
       end
     end

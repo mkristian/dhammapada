@@ -85,7 +85,7 @@ module Ixtlan
     end
 
     def accept_content( obj, options = {} )
-      script = req.env[ 'SCRIPT_NAME' ]
+      script = env[ 'SCRIPT_NAME' ]
       if script =~ /\./
         extension = script.sub( /^.*\./, '' )
         mime = ClassMethods::MIMES[ extension.to_sym ] || []

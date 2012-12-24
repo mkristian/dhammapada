@@ -20,4 +20,9 @@ namespace :db do
     warn "[DataMapper] Finished auto_upgrade!"
   end
 
+  task :seed => :environment do
+
+    warn "TODO db:seed"
+
+  end
 end
