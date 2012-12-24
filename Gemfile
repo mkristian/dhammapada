@@ -1,3 +1,5 @@
+source :rubygems
+
 DM_VERSION = '1.2.0'
 gem 'dm-core', DM_VERSION
 gem 'dm-migrations', DM_VERSION
