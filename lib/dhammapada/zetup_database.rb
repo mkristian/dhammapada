@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'dm-sqlite-adapter'
+require 'dm-sqlite-adapter' unless ENV['DATABASE_URL'] 
 require 'dm-migrations'
 
 DataMapper.setup( :default, #"sqlite3::memory:" )
