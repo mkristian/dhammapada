@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-require 'cuba'
 require 'cuba_api'
-require 'dhammapada/plugin'
+require 'dhammapada/app'
 
 module Dhammapada
   class Cuba < CubaAPI
 
-    plugin Plugin
+    plugin App
 
     define do
       on ":name" do |name|

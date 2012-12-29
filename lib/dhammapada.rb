@@ -17,19 +17,30 @@ Dir[ File.join( File.expand_path( 'dhammapada',
 end
 
 CubaAPI.use Rack::Deflater
+# TODO use datamapper session
 CubaAPI.use Rack::Session::Cookie, :secret => SecureRandom.hex(64)
-CubaAPI.use Rack::Protection
+CubaAPI.use Rack::Protection, :except => [:escaped_params,:remote_token]
+#CubaAPI.use Rack::Protection::AuthenticityToken
+
 CubaAPI.use Rack::JSONP
 
 CubaAPI.accept :json, :yaml
 
 CubaAPI.define do
-  on 'audits' do
-    run Ixtlan::Audit::Cuba
+
+  on 'session' do
+    run Ixtlan::UserManagement::SessionCuba
   end
-  on 'errors' do
-    run Ixtlan::Errors::Cuba
+
+  on authenticated? do
+    on 'audits', allowed?( 'guest', 'root' ) do
+      run Ixtlan::Audit::Cuba
+    end
+    on 'errors', allowed?( 'root' ) do
+      run Ixtlan::Errors::Cuba
+    end
   end
+
   on "dhammapada" do
     run Dhammapada::Cuba
   end

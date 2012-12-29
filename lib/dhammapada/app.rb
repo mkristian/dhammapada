@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-require 'cuba'
 require 'cuba_api'
 require 'dhammapada/models'
 module Dhammapada
-  module Plugin
+  module App
 
     def dhammapada( name )
       dhammapada_map[ name.sub( / /, '_').sub( /ü/, 'u').downcase ]

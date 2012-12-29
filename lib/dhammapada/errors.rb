@@ -1,3 +1,6 @@
+# TODO remove that needed require
+require 'ixtlan/guard/models'
+
 require 'ixtlan/errors/rack'
 require 'ixtlan/errors/dumper'
 require 'ixtlan/errors/cuba'

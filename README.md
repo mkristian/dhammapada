@@ -26,7 +26,7 @@ or shotgun
 	
 for faster startup (only unix like OS) setup your load_path from the Gemfile.lock
 
-    ruby bin/gemfile_to_bin_load_path.rb
+    bin/gemfile_to_bin_load_path
 
 now use the run-ruby script
 
@@ -39,14 +39,6 @@ or shutgun
 URLs
 ----
 
-* wget http://localhost:9292/audits -O - --header='Accept: application/x-yaml'
-
-* wget http://localhost:9292/audits/2.json -O -
-
-* wget http://localhost:9292/errors.yaml -O -
-
-* wget http://localhost:9292/errors/2 -O - --header='Accept: application/json'
-
 * wget http://localhost:9292/dhammapada -O - --header='Accept: application/x-yaml'
 
 * wget http://localhost:9292/dhammapada/max_muller -O - --header='Accept: application/x-yaml'
@@ -57,9 +49,22 @@ URLs
 
 **note1**: onle json and yaml output is supported (did not find a suitable xml library for providing Hash to XML conversion - ActiveSupport feels to big for such a thing)
 
-**note2**: extension will take preference of Accept header.
+**note2**: extension will take preference before Accept header.
 
 **note3**: there is not dhammapada.json or dhammapada.yaml !!
+
+Protected URLs
+--------------
+
+after login with cookie
+
+* wget http://localhost:9292/audits -O - --header='Accept: application/x-yaml'
+
+* wget http://localhost:9292/audits/2.json -O -
+
+* wget http://localhost:9292/errors.yaml -O -
+
+* wget http://localhost:9292/errors/2 -O - --header='Accept: application/json'
 
 Contributing
 ------------

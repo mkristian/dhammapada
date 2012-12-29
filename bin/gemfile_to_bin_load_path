@@ -1,4 +1,4 @@
-#!/bin/env ruby
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'bundler'
 
@@ -9,5 +9,7 @@ puts 'write out load path'
 paths =Gem.loaded_specs.values.collect{ |s| File.join( s.full_gem_path, s.require_path ) }
 
 File.open( File.join( "bin", "load_path" ), 'w' ) do |f|
-  f.puts paths.join( ':' )
+  f.print 'LOAD_PATH="'
+  f.print paths.join( ':' )
+  f.puts '"'
 end
