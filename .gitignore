@@ -1,3 +1,4 @@
 bin/load_path
 db/*sqlite3
 passwords.yml
+cookies.txt
