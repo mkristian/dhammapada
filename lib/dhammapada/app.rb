@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 require 'cuba_api'
+require 'securerandom'
 require 'dhammapada/models'
 module Dhammapada
   module App
 
     def dhammapada( name )
       dhammapada_map[ name.sub( / /, '_').sub( /ü/, 'u').downcase ]
+    end
+
+    def random_verse
+      d = dhammapada_map[ dhammapada_map.keys[ SecureRandom.random_number(2) ] ]
+      d.verse( SecureRandom.random_number( d.number_of_verses ) )
     end
 
     def dhammapada_all

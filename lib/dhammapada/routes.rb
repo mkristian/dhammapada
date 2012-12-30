@@ -8,6 +8,9 @@ module Dhammapada
     plugin App
 
     define do
+      on 'random' do
+        write random_verse
+      end
       on ":name" do |name|
         on get, "chapter/:number" do |number|
           write dhammapada( name ).chapter( number.to_i )

@@ -3,6 +3,7 @@ require 'cuba_api'
 
 require "rack/jsonp"
 require "rack/protection"
+require 'rack/csrf'
 require "securerandom"
 
 require 'json'
@@ -16,19 +17,18 @@ Dir[ File.join( File.expand_path( 'dhammapada',
   require f
 end
 
-CubaAPI.use Rack::Deflater
-# TODO use datamapper session
-CubaAPI.use Rack::Session::Cookie, :secret => SecureRandom.hex(64)
+CubaAPI.use Rack::Session::Cookie, :secret => Ixtlan::Passwords.get( :security_token, "something" )
 CubaAPI.use Rack::Protection, :except => [:escaped_params,:remote_token]
-#CubaAPI.use Rack::Protection::AuthenticityToken
-
+CubaAPI.use Rack::Csrf, :skip => ['POST:/session.*', 'DELETE:/session']
 CubaAPI.use Rack::JSONP
+CubaAPI.use Rack::Deflater
 
 CubaAPI.accept :json, :yaml
 
 CubaAPI.define do
 
   on 'session' do
+    Rack::Csrf.csrf_token( env )
     run Ixtlan::UserManagement::SessionCuba
   end
 

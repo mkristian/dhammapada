@@ -1,7 +1,7 @@
 # -*- Coding: utf-8 -*-
 require 'ixtlan/user_management/dummy_authentication'
 
-if Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'ixtlan/user_management/authentication' )
+if url = Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'ixtlan/user_management/authentication' )
 
   warn '[Authentication] Using dummy Authentication'
 
@@ -9,16 +9,9 @@ if Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'i
 
     include Ixtlan::UserManagement::DummyAuthentication
 
-    # def login(login, password)
-    #   if ! login.blank? && password.blank?
-    #     result = setup_user
-    #     result.login = login.sub( /\[.*/, '' )
-    #     result.name = result.login.capitalize
-    #     result.groups = [ setup_group( login ) ]
-    #     result
-    #   end
-      
-    # end
-    
   end
+else
+
+  warn "[Authentication] Using Authentication at #{CubaAPI[ :rest ].to_server('ixtlan/user_management/authentication').url}"
+  
 end
