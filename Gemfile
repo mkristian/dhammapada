@@ -10,10 +10,10 @@ gem 'pony', '~> 1.4'
 gem 'virtus', '~> 0.5.0'
 
 gem 'ixtlan-babel', '~> 0.2.0'#, :path => '../ixtlan/ixtlan-babel'
-gem 'ixtlan-audit', '~> 0.3.1'#, :path => '../ixtlan/ixtlan-audit'
+gem 'ixtlan-audit', '~> 0.3.2'#, :path => '../ixtlan/ixtlan-audit'
 gem 'ixtlan-error-handler', '~> 0.3.1'#, :path => '../ixtlan/ixtlan-error-handler'
 gem 'ixtlan-guard', '~> 0.9' #:path => '../ixtlan/ixtlan-guard'
-gem 'ixtlan-remote', '~> 0.1'#, :path => '../ixtlan/ixtlan-remote'
+gem 'ixtlan-remote', '~> 0.1.1'#, :path => '../ixtlan/ixtlan-remote'
 
 gem 'cuba-api', '~> 0.1'#, :path=> '../cuba-api'
 
