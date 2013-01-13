@@ -3,6 +3,7 @@ source :rubygems
 DM_VERSION = '1.2.0'
 gem 'dm-core', DM_VERSION
 gem 'dm-migrations', DM_VERSION
+gem 'dm-validations', DM_VERSION
 gem 'dm-sqlite-adapter', DM_VERSION, :group => :development
 gem 'dm-postgres-adapter', DM_VERSION, :group => :production
 
