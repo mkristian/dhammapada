@@ -8,7 +8,7 @@ module Dhammapada
     plugin App
 
     define do
-      on 'random' do
+      on /random(\..+)/ do
         write random_verse
       end
       on ":name" do |name|
