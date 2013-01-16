@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-require 'cuba_api'
 require 'securerandom'
 require 'dhammapada/models'
 module Dhammapada

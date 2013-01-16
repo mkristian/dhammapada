@@ -1,5 +1,4 @@
 require 'ixtlan/user_management/session_cuba'
-require 'ixtlan/user_management/authenticator'
 
 module Dhammapada
   class Permissions

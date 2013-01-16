@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-require 'dm-sqlite-adapter' unless ENV['DATABASE_URL'] 
-require 'dm-migrations'
+
+# adjust or (un)comment as needed
+#DataMapper::Logger.new($stdout, :debug) 
 
 DataMapper.setup( :default,
                   ENV['DATABASE_URL'] || 'sqlite:db/development.sqlite3' )

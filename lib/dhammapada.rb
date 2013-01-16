@@ -9,11 +9,15 @@ require "securerandom"
 require 'json'
 require 'yaml'
 
+require 'dm-migrations'
+require 'dm-validations'
+require 'dm-aggregates'
+
 # intialize application
 Dir[ File.join( File.expand_path( 'dhammapada', 
                                   File.dirname( __FILE__ ) ), 
                 "*.rb" ) ].sort.each do |f|
-  warn "[Dhammapada] Init 'dhammapada/#{File.basename(f)}"
+  warn "[Dhammapada] Init 'dhammapada/#{File.basename(f)}'"
   require f
 end
 

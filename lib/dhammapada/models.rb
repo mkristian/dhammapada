@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 require 'virtus'
-require 'ixtlan-babel'
 
 class Verse
   include Virtus
@@ -87,32 +86,4 @@ class Book
       end
     end
   end
-end
-
-require 'ixtlan/babel/serializer'
-
-class BookSerializer < Ixtlan::Babel::Serializer
-
-  root 'dhammapada'
-
-  add_context( :single,
-               :include => {
-                 :chapters => {
-                   :include => {
-                     :verses => {
-                       :include => [ :lines, :numbers ] 
-                     }
-                   }
-                 }
-               })
-  add_context( :collection,
-               :include => {
-                 :chapters => {
-                   :include => {
-                     :verses => {
-                       :include => [ :lines, :numbers ] 
-                     }
-                   }
-                 }
-               })
 end
