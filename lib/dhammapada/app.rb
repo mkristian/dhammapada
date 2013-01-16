@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # dhammapada app - webapp to browse and display two translations of the
 # Dhammapada.
@@ -18,7 +19,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
-# -*- coding: utf-8 -*-
 require 'securerandom'
 require 'dhammapada/models'
 module Dhammapada
