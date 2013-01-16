@@ -35,4 +35,23 @@ namespace :db do
     warn "TODO db:seed"
 
   end
+
+end
+
+task :headers do
+  require 'rubygems'
+  require 'copyright_header'
+
+  args = {
+    :license => 'AGPL3',
+    :copyright_software => 'dhammapada app',
+    :copyright_software_description => 'webapp to browse and display two translations of the Dhammapada.',
+    :copyright_holders => ['Christian Meier'],
+    :copyright_years => [Time.now.year],
+    :add_path => ['lib', 'app', 'src', 'db/seeds.rb'].join( File::PATH_SEPARATOR ),
+    :output_dir => './'
+  }
+
+  command_line = CopyrightHeader::CommandLine.new( args )
+  command_line.execute
 end

@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.2.8)
     backports (2.6.5)
+    copyright-header (1.0.7)
     cuba (3.1.0)
       rack
     cuba-api (0.1.0)
@@ -11,6 +12,8 @@ GEM
     daemons (1.1.9)
     data_objects (0.10.10)
       addressable (~> 2.1)
+    dm-aggregates (1.2.0)
+      dm-core (~> 1.2.0)
     dm-core (1.2.0)
       addressable (~> 2.2.6)
     dm-do-adapter (1.2.0)
@@ -75,8 +78,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  copyright-header (~> 1.0.7)
   cuba-api (~> 0.1)
-  dm-core (= 1.2.0)
+  dm-aggregates (= 1.2.0)
   dm-migrations (= 1.2.0)
   dm-postgres-adapter (= 1.2.0)
   dm-sqlite-adapter (= 1.2.0)
