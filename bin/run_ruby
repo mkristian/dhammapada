@@ -1,4 +1,11 @@
 #!/bin/bash
 
+if test 'Gemfile' -nt 'bin/load_path'; then
+   ruby 'bin/gemfile_to_bin_load_path'
+fi
+if test ! -e 'bin/load_path'; then
+   ruby 'bin/gemfile_to_bin_load_path'
+fi
+
 source 'load_path'
-ruby -I$LOAD_PATH $*
+ruby -I$LOAD_PATH $@
