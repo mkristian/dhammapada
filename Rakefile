@@ -1,4 +1,14 @@
+# -*- mode: ruby -*-
+
 $LOAD_PATH << 'lib' unless $LOAD_PATH.member? 'lib'
+
+desc 'triggers the update of remote resources'
+task :update => [:environment] do
+    sync = Updater.new
+    sync.do_it
+
+    puts "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}\n\t#{sync}"
+end
 
 task :environment do
   require 'dhammapada'
