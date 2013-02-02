@@ -31,9 +31,12 @@ namespace :db do
   end
 
   task :seed => :environment do
+    require 'seeds'
+    warn "[DataMapper] Finished seeding the db!"
+  end
 
-    warn "TODO db:seed"
-
+  task :setup => [:automigrate, :seed] do
+    warn "[DataMapper] Finished db setup!"
   end
 
 end
