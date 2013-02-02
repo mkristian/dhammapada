@@ -103,11 +103,11 @@ before login without cookie
 
 after login with cookie
 
-* wget http://localhost:9292/audits -S -O - --header='Accept: application/x-yaml' --save-cookies cookies.txt --load-cookes cookes.txt --keep-session-cookies
+* wget http://localhost:9292/audits -S -O - --header='Accept: application/x-yaml' --save-cookies cookies.txt --load-cookies cookies.txt --keep-session-cookies
 
-* wget http://localhost:9292/audits/2.json -S -O - --save-cookies cookies.txt --load-cookes cookes.txt --keep-session-cookies
+* wget http://localhost:9292/audits/2.json -S -O - --save-cookies cookies.txt --load-cookies cookies.txt --keep-session-cookies
 
-* wget http://localhost:9292/errors.yaml -O - --save-cookies cookies.txt --load-cookes cookes.txt --keep-session-cookies
+* wget http://localhost:9292/errors.yaml -O - --save-cookies cookies.txt --load-cookies cookies.txt --keep-session-cookies
 
 * wget http://localhost:9292/errors/2 -O - --header='Accept: application/json' --header='Accept: application/x-yaml' --save-cookies cookies.txt --load-cookes cookes.txt --keep-session-cookies
 
