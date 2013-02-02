@@ -20,7 +20,6 @@
 #
 require 'ixtlan/user_management/session_cuba'
 require 'ixtlan/user_management/authenticator'
-require 'ixtlan/user_management/user_resource'
 require 'ixtlan/guard/models'
 require 'ixtlan/user_management/session_manager'
 

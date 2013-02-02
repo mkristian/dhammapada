@@ -29,10 +29,6 @@ require "securerandom"
 require 'json'
 require 'yaml'
 
-require 'dm-migrations'
-require 'dm-validations'
-require 'dm-aggregates'
-
 # intialize application
 Dir[ File.join( File.expand_path( 'dhammapada', 
                                   File.dirname( __FILE__ ) ), 
@@ -62,6 +58,9 @@ CubaAPI.define do
     end
     on 'errors', allowed?( 'root' ) do
       run Ixtlan::Errors::Cuba
+    end
+    on 'configuration', allowed?( 'root' ) do
+      run Ixtlan::Configuration::Cuba
     end
   end
 

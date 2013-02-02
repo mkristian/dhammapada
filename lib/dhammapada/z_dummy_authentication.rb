@@ -20,6 +20,7 @@
 #
 # -*- Coding: utf-8 -*-
 require 'ixtlan/user_management/dummy_authentication'
+require 'ixtlan/user_management/group_model'
 
 if url = Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'ixtlan/user_management/authentication' )
 

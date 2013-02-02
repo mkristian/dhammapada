@@ -22,6 +22,7 @@
 require 'ixtlan/guard/models'
 
 require 'ixtlan/errors/rack'
+require 'ixtlan/errors/resource'
 require 'ixtlan/errors/dumper'
 require 'ixtlan/errors/cuba'
 

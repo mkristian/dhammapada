@@ -19,8 +19,8 @@
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
 require 'ixtlan/user_management/authentication_model'
-require 'ixtlan/user_management/user_resource'
 require 'ixtlan/remote/rest'
+require 'dhammapada/passwords'
 
 CubaAPI[ :rest ] = Ixtlan::Remote::Rest.new
 CubaAPI[ :rest ].server( :users ) do |server|
