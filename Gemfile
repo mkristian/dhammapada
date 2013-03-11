@@ -26,6 +26,6 @@ gem 'rack-protection', '~> 1.1'
 gem 'rack_csrf', '~> 2.4'
 
 gem 'shotgun', :group => :development
-gem 'thin', :group => :production
+gem 'thin', :group => :production, :platform => :ruby
 
 gem 'copyright-header', '~> 1.0.7', :group => :development
