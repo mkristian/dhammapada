@@ -18,11 +18,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
-# -*- coding: utf-8 -*-
+# -*- Coding: utf-8 -*-
+require 'dhammapada/init/session'
+require 'dhammapada/init/remote_servers'
+require 'ixtlan/user_management/dummy_authentication'
+require 'ixtlan/user_management/group_model'
 
-# adjust or (un)comment as needed
-#DataMapper::Logger.new($stdout, :debug) 
+if url = Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'ixtlan/user_management/authentication' )
 
-DataMapper.setup( :default,
-                  ENV['DATABASE_URL'] || 'sqlite:db/development.sqlite3' )
-DataMapper.finalize
+  warn '[Authentication] Using dummy Authentication'
+
+  class Dhammapada::Authenticator 
+
+    include Ixtlan::UserManagement::DummyAuthentication
+
+  end
+else
+
+  warn "[Authentication] Using Authentication at #{CubaAPI[ :rest ].to_server('ixtlan/user_management/authentication').url}"
+  
+end

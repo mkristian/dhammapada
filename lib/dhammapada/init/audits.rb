@@ -18,21 +18,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
-# -*- Coding: utf-8 -*-
-require 'ixtlan/user_management/dummy_authentication'
-require 'ixtlan/user_management/group_model'
+require 'ixtlan/audit/cuba'
+require 'ixtlan/audit/cuba_plugin'
 
-if url = Ixtlan::UserManagement::DummyAuthentication.need_dummy?( CubaAPI[ :rest ], 'ixtlan/user_management/authentication' )
-
-  warn '[Authentication] Using dummy Authentication'
-
-  class Dhammapada::Authenticator 
-
-    include Ixtlan::UserManagement::DummyAuthentication
-
-  end
-else
-
-  warn "[Authentication] Using Authentication at #{CubaAPI[ :rest ].to_server('ixtlan/user_management/authentication').url}"
-  
+CubaAPI[ :audit_manager ] = Ixtlan::Audit::Manager.new do |m|
+  m.keep_logs = Ixtlan::Configuration::Configuration.instance.audit_keep_logs
 end
+CubaAPI.plugin Ixtlan::Audit::CubaPlugin

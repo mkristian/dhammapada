@@ -31,7 +31,6 @@ module Dhammapada
       audits = Ixtlan::Guard::Permission.new( :resource => 'audits' )
       errors = Ixtlan::Guard::Permission.new( :resource => 'errors' )
       config = Ixtlan::Guard::Permission.new( :resource => 'configuration' )
-      events = Ixtlan::Guard::Permission.new( :resource => 'events' )
 
       permissions = [ audits, errors, config ]
       
@@ -43,20 +42,6 @@ module Dhammapada
       when 'guest'
         # deny no action == allow all actions
         audits.deny = true
-      when 'admin'
-        # deny no action == allow all actions
-        events.actions = [ Ixtlan::Guard::Action.new( :name => :show ),
-                           Ixtlan::Guard::Action.new( :name => :create,
-                                                      :associations => groups.domains ),
-                           Ixtlan::Guard::Action.new( :name => :updated,
-                                                      :associations => groups.domains ) ,
-                           Ixtlan::Guard::Action.new( :name => :destroy,
-                                                      :associations => groups.domains ) ]
-        events.deny = false
-      when 'user'
-        # allow show action on events
-        events.actions = [ Ixtlan::Guard::Action.new( :name => :show ) ]
-        events.deny = false
       end
       
       permissions

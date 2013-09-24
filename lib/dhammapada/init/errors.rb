@@ -18,7 +18,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
-require 'ixtlan/audit/cuba'
-require 'ixtlan/audit/cuba_plugin'
+# TODO remove that needed require
+require 'ixtlan/guard/models'
 
-CubaAPI.plugin Ixtlan::Audit::CubaPlugin
+require 'ixtlan/errors/rack'
+require 'ixtlan/errors/resource'
+require 'ixtlan/errors/dumper'
+require 'ixtlan/errors/cuba'
+
+CubaAPI.use Ixtlan::Errors::Rack, Ixtlan::Errors::Dumper.new do |dumper|
+  c = Ixtlan::Configuration::Configuration.instance
+  dumper.from_email = c.errors_from_email
+  dumper.to_emails = c.errors_to_emails
+  dumper.keep_dumps = c.errors_keep_dumps
+  dumper.base_url = c.errors_base_url
+end

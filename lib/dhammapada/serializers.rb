@@ -19,9 +19,6 @@
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
-
-#require 'ixtlan-babel'
-
 require 'ixtlan/babel/serializer'
 
 class BookSerializer < Ixtlan::Babel::Serializer

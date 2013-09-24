@@ -21,6 +21,7 @@
 # -*- coding: utf-8 -*-
 require 'cuba_api'
 require 'dhammapada/app'
+require 'dhammapada/serializers'
 
 module Dhammapada
   class Cuba < CubaAPI

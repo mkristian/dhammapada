@@ -19,52 +19,20 @@
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
-require 'cuba_api'
+require 'json_setup'
 
-require "rack/jsonp"
-require "rack/protection"
-require 'rack/csrf'
-require "securerandom"
+require 'dm-core'
+#DataMapper::Logger.new(STDOUT, :debug)
 
-require 'json'
-require 'yaml'
+require 'datamapper'
 
 # intialize application
-Dir[ File.join( File.expand_path( 'dhammapada', 
+Dir[ File.expand_path( File.join( 'dhammapada',
+                                  'init',
                                   File.dirname( __FILE__ ) ), 
                 "*.rb" ) ].sort.each do |f|
-  warn "[Dhammapada] Init 'dhammapada/#{File.basename(f)}'"
+  warn "[Dhammapada::Init] 'dhammapada/init/#{File.basename(f)}'"
   require f
 end
 
-CubaAPI.use Rack::Session::Cookie, :secret => Ixtlan::Passwords.get( :security_token, "something" )
-CubaAPI.use Rack::Protection, :except => [:escaped_params,:remote_token]
-CubaAPI.use Rack::Csrf, :skip => ['POST:/session.*', 'DELETE:/session']
-CubaAPI.use Rack::JSONP
-CubaAPI.use Rack::Deflater
-
-CubaAPI.accept :json, :yaml
-
-CubaAPI.define do
-
-  on 'session' do
-    Rack::Csrf.csrf_token( env )
-    run Ixtlan::UserManagement::SessionCuba
-  end
-
-  on authenticated? do
-    on 'audits', allowed?( 'guest', 'root' ) do
-      run Ixtlan::Audit::Cuba
-    end
-    on 'errors', allowed?( 'root' ) do
-      run Ixtlan::Errors::Cuba
-    end
-    on 'configuration', allowed?( 'root' ) do
-      run Ixtlan::Configuration::Cuba
-    end
-  end
-
-  on "dhammapada" do
-    run Dhammapada::Cuba
-  end
-end
+require 'root_cuba'
