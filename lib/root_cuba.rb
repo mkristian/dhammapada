@@ -23,6 +23,7 @@ require 'cuba_api'
 
 require 'cuba_api/reloader_rack'
 require 'cuba_api/ext2mime_rack'
+require 'cuba_api/no_session_rack'
 require 'cuba_api/utils'
 require 'cuba_api/cors'
 
@@ -37,9 +38,10 @@ require 'dhammapada/cuba'
 
 # assume that when we use dummy-authentication that we also want reloading
 if defined? Ixtlan::UserManagement::DummyAuthentication
-  CubaAPI.use CubaApi::ReloaderRack, 'lib/4foodiez', ForFoodiez
+  CubaAPI.use CubaApi::ReloaderRack, 'lib/dhammapada', Dhammapada
 end
 
+CubaAPI.use CubaApi::NoSessionRack, 'audits', 'configuration', 'errors'
 CubaAPI.use Rack::Session::EncryptedCookie, :secret => Ixtlan::Configuration::Configuration.instance.encrypted_cookie_secret
 CubaAPI.use Rack::Csrf, :skip => [ 'POST:/session.*', 'DELETE:/session' ]
 CubaAPI.use Rack::ConditionalGet
@@ -101,3 +103,4 @@ CubaAPI.define do
     run Dhammapada::Cuba
   end
 end
+
