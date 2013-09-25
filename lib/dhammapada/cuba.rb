@@ -29,27 +29,56 @@ module Dhammapada
     plugin App
 
     define do
-      on /random(\..+)/ do
-        write random_verse
-      end
-      on ":name" do |name|
-        on get, "chapter/:number" do |number|
-          write dhammapada( name ).chapter( number.to_i )
+
+      on_cors_method [ :get, :head, :put ] do
+
+        on head do
+          last_modified( last_modified_max )
+          res.status = 200
         end
 
-        on get, "verse/:number" do |number|
-          write dhammapada( name ).verse( number.to_i )
+        on /random/ do
+          write random_verse
         end
 
-        on get do
-          write dhammapada( name.sub( /\..*$/, '') )
+        on ":name" do |name|
+          on "chapter/:number" do |number|
+            if modified_since.nil? || modified_since < last_modified_max
+              last_modified( last_modified_max )
+              write dhammapada( name ).chapter( number.to_i )
+            else
+              last_modified( modified_since )            
+            end
+          end
+          
+          on "verse/:number" do |number|
+            if modified_since.nil? || modified_since < last_modified_max
+              last_modified( last_modified_max )
+              write dhammapada( name ).verse( number.to_i )
+            else
+              last_modified( modified_since )            
+            end
+          end
+          
+          on no_path do
+            if modified_since.nil? || modified_since < last_modified_max
+              last_modified( last_modified_max )
+              write dhammapada( name.sub( /\..*$/, '') )
+            else
+              last_modified( modified_since )            
+            end
+          end
         end
-      end
 
-      on get do
-        write dhammapada_all
+        on no_path do
+          if modified_since.nil? || modified_since < last_modified_max
+            last_modified( last_modified_max )
+            write dhammapada_all
+          else
+            last_modified( modified_since )            
+          end
+        end
       end
     end
-
   end
 end
