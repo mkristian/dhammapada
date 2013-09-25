@@ -27,10 +27,10 @@ require 'dm-core'
 require 'datamapper'
 
 # intialize application
-Dir[ File.expand_path( File.join( 'dhammapada',
+Dir[ File.expand_path( File.join( File.dirname( __FILE__ ), 
+                                  'dhammapada',
                                   'init',
-                                  File.dirname( __FILE__ ) ), 
-                "*.rb" ) ].sort.each do |f|
+                                  '*.rb' ) ) ].sort.each do |f|
   warn "[Dhammapada::Init] 'dhammapada/init/#{File.basename(f)}'"
   require f
 end

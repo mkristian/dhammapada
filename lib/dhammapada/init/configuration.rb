@@ -1,5 +1,5 @@
-require 'dhammapada/audits'
-require 'dhammapada/errors'
-require 'dhammapada/remote_servers'
+require 'dhammapada/init/audits'
+require 'dhammapada/init/errors'
+require 'dhammapada/init/remote_servers'
 
 require 'ixtlan/configuration/cuba'

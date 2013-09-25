@@ -20,7 +20,7 @@
 #
 require 'ixtlan/user_management/authentication_model'
 require 'ixtlan/remote/rest'
-require 'dhammapada/passwords'
+require 'dhammapada/init/passwords'
 
 CubaAPI[ :rest ] = Ixtlan::Remote::Rest.new
 CubaAPI[ :rest ].server( :users ) do |server|
