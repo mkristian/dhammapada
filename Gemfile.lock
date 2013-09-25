@@ -61,7 +61,7 @@ GEM
       slf4r (~> 0.4.2)
     ixtlan-babel (0.4.0)
     ixtlan-configuration (0.2.0)
-    ixtlan-error-handler (0.4.2)
+    ixtlan-error-handler (0.4.4)
       slf4r (~> 0.4.2)
     ixtlan-guard (0.9.0)
       virtus (~> 0.5)
