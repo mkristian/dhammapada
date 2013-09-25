@@ -20,9 +20,14 @@
 # along with dhammapada app.  If not, see <http://www.gnu.org/licenses/>.
 #
 require 'securerandom'
+require 'date'
 require 'dhammapada/models'
 module Dhammapada
   module App
+    
+    def last_modified_max
+      self.class.last_modified_max
+    end
 
     def dhammapada( name )
       dhammapada_map[ name.sub( / /, '_').sub( /ü/, 'u').downcase ]
@@ -37,16 +42,29 @@ module Dhammapada
       dhammapada_map.values
     end
 
-    private
-
     def dhammapada_map
-      @dhammapada_map ||= load
+      self.class.dhammapada_map
     end
 
-    def load
-      result = {}
-      result[ 'john_richards' ] = load_file( "dhammapada-english-transl.yml" )
-      result[ 'max_muller' ] = load_file( "dhammapada-alternate.yml" )
+    module ClassMethods
+      def last_modified_max
+        dhammapada_map # ensure everything is loaded
+        @last_modified_max
+      end
+      
+      def dhammapada_map
+        @dhammapada_map ||= load
+      end
+      
+      def load
+        result = {}
+        file = data_file( "dhammapada-english-transl.yml" )
+        result[ 'john_richards' ] = load_file( file )
+        @last_modified_max = File.mtime( file )
+        file = data_file( "dhammapada-alternate.yml" )
+        result[ 'max_muller' ] = load_file( file )
+        @last_modified_max = [ File.mtime( file ), @last_modified_max ].max
+        @last_modified_max = DateTime.parse( @last_modified_max.utc.to_s )
       result
     end
 
@@ -54,9 +72,20 @@ module Dhammapada
       File.expand_path( File.join( '..', '..' ), __FILE__ )
     end
 
+    def data_file( file )
+      File.join( dir, '..', 'data', file )
+    end
+
     def load_file( file )
-      data = YAML.load( File.read( File.join( dir, '..', 'data', file ) ) )
+      data = YAML.load( File.read( file ) )
       Book.new( data[ 'dhammapada' ] )
+    end
+
+    end
+    private
+
+    def dhammapada_map
+      self.class.dhammapada_map
     end
   end
 end
