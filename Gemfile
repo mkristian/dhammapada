@@ -18,6 +18,7 @@ gem 'ixtlan-guard', '~> 0.9' #:path => '../ixtlan/ixtlan-guard'
 gem 'ixtlan-remote', '~> 0.1'#, :path => '../ixtlan/ixtlan-remote'
 gem 'ixtlan-configuration', '~> 0.2'#, :path => '../ixtlan/ixtlan-configuration'
 gem "ixtlan-optimistic", '~> 0.2'#, :path => '../../ixtlan/ixtlan-optimistic'
+gem "ixtlan-user-management", '~> 0.1'#, :path => '../../ixtlan/ixtlan-user-management'
 
 gem 'cuba-api', '~> 0.5'#, :path=> '../cuba-api'
 

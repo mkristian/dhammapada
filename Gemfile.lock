@@ -68,6 +68,8 @@ GEM
     ixtlan-optimistic (0.2.3)
     ixtlan-remote (0.2.0)
       rest-client (~> 1.6.3)
+    ixtlan-user-management (0.1.2)
+      multi_json (~> 1.6)
     jdbc-postgres (9.2.1002.1)
     jdbc-sqlite3 (3.7.2.1)
     mail (2.5.4)
@@ -128,6 +130,7 @@ DEPENDENCIES
   ixtlan-guard (~> 0.9)
   ixtlan-optimistic (~> 0.2)
   ixtlan-remote (~> 0.1)
+  ixtlan-user-management (~> 0.1)
   multi_json
   oj (~> 2.0)
   pony (~> 1.4)
