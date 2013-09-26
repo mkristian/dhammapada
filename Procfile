@@ -1,1 +1,3 @@
 web: bundle exec rackup config.ru -p $PORT
+console: bundle exec irb -r ./lib/console.rb
+
