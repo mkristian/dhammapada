@@ -25,6 +25,9 @@ gem 'rack-jsonp', '~> 1.3'
 gem 'rack-protection', '~> 1.1'
 gem 'rack_csrf', '~> 2.4'
 
+gem 'oj', '~> 2.0', :platform => :ruby # fast json parser
+gem 'multi_json'#, '~> 1.6' keep it open so deps of other libs do not interfere
+
 gem 'shotgun', :group => :development
 gem 'thin', :group => :production, :platform => :ruby
 

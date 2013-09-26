@@ -75,6 +75,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     multi_json (1.8.0)
+    oj (2.1.4)
     polyglot (0.3.3)
     pony (1.5.1)
       mail (>= 2.0)
@@ -127,6 +128,8 @@ DEPENDENCIES
   ixtlan-guard (~> 0.9)
   ixtlan-optimistic (~> 0.2)
   ixtlan-remote (~> 0.1)
+  multi_json
+  oj (~> 2.0)
   pony (~> 1.4)
   rack-jsonp (~> 1.3)
   rack-protection (~> 1.1)
