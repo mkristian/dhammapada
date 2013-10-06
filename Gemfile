@@ -28,9 +28,9 @@ gem 'rack_csrf', '~> 2.4'
 gem 'encrypted_cookie', '~> 0.0'
 
 gem 'oj', '~> 2.0', :platform => :ruby # fast json parser
-gem 'multi_json'#, '~> 1.6' keep it open so deps of other libs do not interfere
+gem 'multi_json', '~> 1.6' # keep it open so deps of other libs do not interfere
 
-gem 'shotgun', :group => :development
+gem 'shotgun', '~> 0.9', :group => :development
 gem 'thin', :group => :production, :platform => :ruby
 
-gem 'copyright-header', '~> 1.0.7', :group => :development
+gem 'copyright-header', '~> 1.0.7', :group => :development, :platform => :ruby
