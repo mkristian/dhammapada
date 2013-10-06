@@ -23,7 +23,7 @@ require 'cuba_api'
 
 require 'cuba_api/reloader_rack'
 require 'cuba_api/ext2mime_rack'
-require 'cuba_api/no_session_rack'
+require 'cuba_api/allow_session_rack'
 require 'cuba_api/utils'
 require 'cuba_api/cors'
 
@@ -41,7 +41,7 @@ if defined? Ixtlan::UserManagement::DummyAuthentication
   CubaAPI.use CubaApi::ReloaderRack, 'lib/dhammapada', Dhammapada
 end
 
-CubaAPI.use CubaApi::NoSessionRack, 'audits', 'configuration', 'errors'
+CubaAPI.use CubaApi::AllowSessionRack, 'audits', 'configuration', 'errors'
 CubaAPI.use Rack::Session::EncryptedCookie, :secret => Ixtlan::Configuration::Configuration.instance.encrypted_cookie_secret
 CubaAPI.use Rack::Csrf, :skip => [ 'POST:/session.*', 'DELETE:/session' ]
 CubaAPI.use Rack::ConditionalGet
